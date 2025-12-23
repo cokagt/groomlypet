@@ -1,0 +1,258 @@
+{
+    "name": "Business",
+    "type": "object",
+    "properties": {
+        "owner_email": {
+            "type": "string",
+            "description": "Email del due\u00f1o del negocio"
+        },
+        "business_name": {
+            "type": "string",
+            "description": "Nombre del negocio"
+        },
+        "short_description": {
+            "type": "string",
+            "description": "Descripci\u00f3n corta (m\u00e1x 150 caracteres)"
+        },
+        "long_description": {
+            "type": "string",
+            "description": "Descripci\u00f3n detallada del negocio"
+        },
+        "categories": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "veterinary",
+                    "grooming",
+                    "spa",
+                    "training",
+                    "daycare",
+                    "pet_shop",
+                    "agropecuaria",
+                    "other"
+                ]
+            },
+            "description": "Categor\u00edas del negocio (multi-selecci\u00f3n)"
+        },
+        "business_type": {
+            "type": "string",
+            "enum": [
+                "services",
+                "store"
+            ],
+            "default": "services",
+            "description": "Tipo de negocio: servicios (con citas) o tienda (solo cat\u00e1logo)"
+        },
+        "accepts_point_redemptions": {
+            "type": "boolean",
+            "default": false,
+            "description": "Si acepta canjes por puntos"
+        },
+        "specialty": {
+            "type": "string",
+            "description": "Especialidad m\u00e9dica si es veterinario"
+        },
+        "years_in_market": {
+            "type": "number",
+            "description": "A\u00f1os en el mercado"
+        },
+        "sells_products": {
+            "type": "boolean",
+            "default": false,
+            "description": "Si vende productos"
+        },
+        "main_photo_url": {
+            "type": "string",
+            "description": "Foto principal de la fachada"
+        },
+        "photos": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "URLs de fotos de instalaciones (m\u00ednimo 5)"
+        },
+        "latitude": {
+            "type": "number",
+            "description": "Latitud de ubicaci\u00f3n"
+        },
+        "longitude": {
+            "type": "number",
+            "description": "Longitud de ubicaci\u00f3n"
+        },
+        "address": {
+            "type": "string",
+            "description": "Direcci\u00f3n completa"
+        },
+        "website": {
+            "type": "string",
+            "description": "URL del sitio web"
+        },
+        "whatsapp": {
+            "type": "string",
+            "description": "N\u00famero de WhatsApp con c\u00f3digo de pa\u00eds"
+        },
+        "whatsapp_message": {
+            "type": "string",
+            "description": "Mensaje predeterminado de WhatsApp"
+        },
+        "facebook": {
+            "type": "string",
+            "description": "URL de perfil de Facebook"
+        },
+        "instagram": {
+            "type": "string",
+            "description": "Usuario de Instagram (sin @)"
+        },
+        "twitter": {
+            "type": "string",
+            "description": "Usuario de Twitter/X (sin @)"
+        },
+        "tiktok": {
+            "type": "string",
+            "description": "Usuario de TikTok (sin @)"
+        },
+        "offers_vaccination": {
+            "type": "boolean",
+            "default": false,
+            "description": "Si ofrece vacunaci\u00f3n"
+        },
+        "emergency_service": {
+            "type": "boolean",
+            "default": false,
+            "description": "Si atiende emergencias"
+        },
+        "phone": {
+            "type": "string",
+            "description": "Tel\u00e9fono principal"
+        },
+        "emergency_phone": {
+            "type": "string",
+            "description": "Tel\u00e9fono de emergencias"
+        },
+        "schedule": {
+            "type": "object",
+            "properties": {
+                "monday": {
+                    "type": "string"
+                },
+                "tuesday": {
+                    "type": "string"
+                },
+                "wednesday": {
+                    "type": "string"
+                },
+                "thursday": {
+                    "type": "string"
+                },
+                "friday": {
+                    "type": "string"
+                },
+                "saturday": {
+                    "type": "string"
+                },
+                "sunday": {
+                    "type": "string"
+                }
+            },
+            "description": "Horarios de atenci\u00f3n por d\u00eda"
+        },
+        "amenities": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "parking",
+                    "wifi",
+                    "air_conditioning",
+                    "outdoor_area",
+                    "grooming_salon",
+                    "surgery_room",
+                    "pharmacy",
+                    "pet_hotel",
+                    "training_area",
+                    "isolation_area",
+                    "wheelchair_accessible",
+                    "pet_playground",
+                    "veterinary_clinic",
+                    "pet_taxi",
+                    "home_service",
+                    "emergency_24h",
+                    "pet_sitting",
+                    "dog_walking",
+                    "pet_photography",
+                    "pet_birthday_parties",
+                    "agility_course",
+                    "socialization_area",
+                    "drying_area",
+                    "separate_cat_area",
+                    "dental_care",
+                    "microchipping",
+                    "pet_store",
+                    "natural_products",
+                    "premium_food",
+                    "toys_accessories",
+                    "delivery",
+                    "veterinary_products",
+                    "bulk_sales"
+                ]
+            },
+            "description": "Amenidades disponibles"
+        },
+        "custom_amenities": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Amenidades personalizadas agregadas por el negocio (m\u00e1x 5)"
+        },
+        "subscription_plan": {
+            "type": "string",
+            "enum": [
+                "free",
+                "basic",
+                "premium",
+                "store"
+            ],
+            "default": "free",
+            "description": "Plan de suscripci\u00f3n actual"
+        },
+        "max_branches": {
+            "type": "number",
+            "default": 1,
+            "description": "M\u00e1ximo de sucursales permitidas"
+        },
+        "parent_business_id": {
+            "type": "string",
+            "description": "ID del negocio principal si es sucursal"
+        },
+        "is_branch": {
+            "type": "boolean",
+            "default": false,
+            "description": "Si es una sucursal"
+        },
+        "is_active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Si el negocio est\u00e1 activo"
+        },
+        "rating_average": {
+            "type": "number",
+            "default": 0,
+            "description": "Calificaci\u00f3n promedio"
+        },
+        "total_reviews": {
+            "type": "number",
+            "default": 0,
+            "description": "Total de rese\u00f1as"
+        }
+    },
+    "required": [
+        "owner_email",
+        "business_name",
+        "categories",
+        "phone",
+        "address"
+    ]
+}

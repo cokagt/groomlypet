@@ -1,0 +1,209 @@
+import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Gift, Star, Award, Zap, Heart, TrendingUp } from "lucide-react";
+
+export default function RewardsSystemInfo() {
+const rewardActions = [
+{
+icon: "✅",
+action: "Completar tu perfil",
+points: 50,
+color: "from-blue-100 to-blue-200"
+},
+{
+icon: "🐾",
+action: "Registrar una mascota",
+points: 30,
+color: "from-purple-100 to-purple-200"
+},
+{
+icon: "📅",
+action: "Reservar una cita",
+points: 20,
+color: "from-green-100 to-green-200"
+},
+{
+icon: "✨",
+action: "Completar una cita",
+points: 50,
+color: "from-yellow-100 to-yellow-200"
+},
+{
+icon: "⭐",
+action: "Dejar una reseña",
+points: 100,
+color: "from-pink-100 to-pink-200"
+},
+{
+icon: "👥",
+action: "Referir un amigo",
+points: 200,
+color: "from-indigo-100 to-indigo-200"
+},
+{
+icon: "📱",
+action: "Compartir en redes sociales",
+points: 30,
+color: "from-orange-100 to-orange-200"
+},
+{
+icon: "🎯",
+action: "Usuario activo mensual",
+points: 50,
+color: "from-teal-100 to-teal-200"
+}
+];
+
+const rewardTiers = [
+{
+name: "Bronce",
+icon: "🥉",
+minPoints: 0,
+benefits: ["5% descuento en servicios", "Acceso a promociones básicas"]
+},
+{
+name: "Plata",
+icon: "🥈",
+minPoints: 500,
+benefits: ["10% descuento", "Prioridad en reservas", "Recordatorios personalizados"]
+},
+{
+name: "Oro",
+icon: "🥇",
+minPoints: 1500,
+benefits: ["15% descuento", "Servicio prioritario", "Acceso VIP a eventos", "1 servicio gratis/mes"]
+},
+{
+name: "Platino",
+icon: "💎",
+minPoints: 3000,
+benefits: ["20% descuento permanente", "Concierge para mascotas", "Todos los beneficios anteriores"]
+}
+];
+
+return (
+<div className="space-y-6">
+    {/* Sistema de Puntos */}
+    <Card className="clay-card border-0">
+        <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+                <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
+                Cómo Ganar Puntos
+            </CardTitle>
+        </CardHeader>
+        <CardContent>
+            <div className="grid md:grid-cols-2 gap-4">
+                {rewardActions.map((item, idx) => (
+                <div key={idx} className={`clay-card rounded-[16px] p-4 bg-gradient-to-r ${item.color}`}>
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="text-2xl">{item.icon}</div>
+                            <div>
+                                <div className="font-medium text-sm">{item.action}</div>
+                            </div>
+                        </div>
+                        <Badge className="bg-white text-[#7B68BE] font-bold">
+                            +{item.points}
+                        </Badge>
+                    </div>
+                </div>
+                ))}
+            </div>
+        </CardContent>
+    </Card>
+
+    {/* Niveles de Usuario */}
+    <Card className="clay-card border-0">
+        <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+                <TrendingUp className="w-6 h-6 text-[#7B68BE]" />
+                Niveles de Usuario
+            </CardTitle>
+        </CardHeader>
+        <CardContent>
+            <div className="space-y-4">
+                {rewardTiers.map((tier, idx) => (
+                <div key={idx} className="clay-card rounded-[16px] p-6 bg-gradient-to-r from-white to-gray-50">
+                    <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-center gap-3">
+                            <div className="text-3xl">{tier.icon}</div>
+                            <div>
+                                <h3 className="font-bold text-lg">{tier.name}</h3>
+                                <p className="text-sm text-gray-600">
+                                    Desde {tier.minPoints} puntos
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="space-y-2">
+                        {tier.benefits.map((benefit, bidx) => (
+                        <div key={bidx} className="flex items-center gap-2 text-sm">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#7B68BE]" />
+                            <span>{benefit}</span>
+                        </div>
+                        ))}
+                    </div>
+                </div>
+                ))}
+            </div>
+        </CardContent>
+    </Card>
+
+    {/* Premios Canjeables */}
+    <Card className="clay-card border-0">
+        <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+                <Gift className="w-6 h-6 text-[#5BA3C9]" />
+                Premios Disponibles
+            </CardTitle>
+        </CardHeader>
+        <CardContent>
+            <div className="grid md:grid-cols-3 gap-4">
+                <div className="clay-card rounded-[16px] p-4 text-center">
+                    <div className="text-4xl mb-2">🎟️</div>
+                    <h4 className="font-bold mb-1">10% Descuento</h4>
+                    <p className="text-sm text-gray-600 mb-3">En cualquier servicio</p>
+                    <Badge className="bg-[#7B68BE] text-white">200 puntos</Badge>
+                </div>
+
+                <div className="clay-card rounded-[16px] p-4 text-center">
+                    <div className="text-4xl mb-2">✂️</div>
+                    <h4 className="font-bold mb-1">Grooming Gratis</h4>
+                    <p className="text-sm text-gray-600 mb-3">1 sesión completa</p>
+                    <Badge className="bg-[#7B68BE] text-white">500 puntos</Badge>
+                </div>
+
+                <div className="clay-card rounded-[16px] p-4 text-center">
+                    <div className="text-4xl mb-2">⚡</div>
+                    <h4 className="font-bold mb-1">Reserva Prioritaria</h4>
+                    <p className="text-sm text-gray-600 mb-3">Por 30 días</p>
+                    <Badge className="bg-[#7B68BE] text-white">300 puntos</Badge>
+                </div>
+
+                <div className="clay-card rounded-[16px] p-4 text-center">
+                    <div className="text-4xl mb-2">💊</div>
+                    <h4 className="font-bold mb-1">Consulta Veterinaria</h4>
+                    <p className="text-sm text-gray-600 mb-3">1 consulta gratis</p>
+                    <Badge className="bg-[#7B68BE] text-white">800 puntos</Badge>
+                </div>
+
+                <div className="clay-card rounded-[16px] p-4 text-center">
+                    <div className="text-4xl mb-2">🛁</div>
+                    <h4 className="font-bold mb-1">Spa Package</h4>
+                    <p className="text-sm text-gray-600 mb-3">Baño + arreglo + masaje</p>
+                    <Badge className="bg-[#7B68BE] text-white">1000 puntos</Badge>
+                </div>
+
+                <div className="clay-card rounded-[16px] p-4 text-center">
+                    <div className="text-4xl mb-2">👑</div>
+                    <h4 className="font-bold mb-1">VIP por 1 Mes</h4>
+                    <p className="text-sm text-gray-600 mb-3">Acceso a todo</p>
+                    <Badge className="bg-gradient-to-r from-[#FFD700] to-[#FFA500] text-white">1500 puntos</Badge>
+                </div>
+            </div>
+        </CardContent>
+    </Card>
+</div>
+);
+}

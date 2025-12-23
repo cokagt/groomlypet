@@ -1,0 +1,51 @@
+{
+    "name": "UserReward",
+    "type": "object",
+    "properties": {
+        "user_email": {
+            "type": "string",
+            "description": "Email del usuario"
+        },
+        "reward_id": {
+            "type": "string",
+            "description": "ID del premio canjeado"
+        },
+        "reward_name": {
+            "type": "string",
+            "description": "Nombre del premio"
+        },
+        "points_spent": {
+            "type": "number",
+            "description": "Puntos gastados"
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "active",
+                "used",
+                "expired"
+            ],
+            "default": "active",
+            "description": "Estado del premio"
+        },
+        "expiration_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Fecha de expiraci\u00f3n"
+        },
+        "coupon_code": {
+            "type": "string",
+            "description": "C\u00f3digo \u00fanico para usar el premio"
+        },
+        "used_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Cu\u00e1ndo se us\u00f3 el premio"
+        }
+    },
+    "required": [
+        "user_email",
+        "reward_id",
+        "points_spent"
+    ]
+}

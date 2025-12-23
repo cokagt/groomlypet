@@ -1,0 +1,73 @@
+{
+    "name": "Coupon",
+    "type": "object",
+    "properties": {
+        "business_id": {
+            "type": "string",
+            "description": "ID del negocio"
+        },
+        "code": {
+            "type": "string",
+            "description": "C\u00f3digo del cup\u00f3n"
+        },
+        "title": {
+            "type": "string",
+            "description": "T\u00edtulo de la promoci\u00f3n"
+        },
+        "description": {
+            "type": "string",
+            "description": "Descripci\u00f3n de la promoci\u00f3n"
+        },
+        "discount_type": {
+            "type": "string",
+            "enum": [
+                "percentage",
+                "fixed"
+            ],
+            "description": "Tipo de descuento"
+        },
+        "discount_value": {
+            "type": "number",
+            "description": "Valor del descuento"
+        },
+        "valid_from": {
+            "type": "string",
+            "format": "date",
+            "description": "Fecha de inicio"
+        },
+        "valid_until": {
+            "type": "string",
+            "format": "date",
+            "description": "Fecha de expiraci\u00f3n"
+        },
+        "usage_limit": {
+            "type": "number",
+            "description": "L\u00edmite de usos totales"
+        },
+        "usage_count": {
+            "type": "number",
+            "default": 0,
+            "description": "Veces que se ha usado"
+        },
+        "is_active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Si est\u00e1 activo"
+        },
+        "applicable_services": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "IDs de servicios aplicables"
+        }
+    },
+    "required": [
+        "business_id",
+        "code",
+        "title",
+        "discount_type",
+        "discount_value",
+        "valid_until"
+    ]
+}

@@ -1,0 +1,59 @@
+{
+    "name": "Pet",
+    "type": "object",
+    "properties": {
+        "owner_email": {
+            "type": "string",
+            "description": "Email del due\u00f1o de la mascota"
+        },
+        "name": {
+            "type": "string",
+            "description": "Nombre de la mascota"
+        },
+        "photo_url": {
+            "type": "string",
+            "description": "URL de la foto de la mascota"
+        },
+        "species": {
+            "type": "string",
+            "enum": [
+                "dog",
+                "cat",
+                "bird",
+                "rabbit",
+                "other"
+            ],
+            "description": "Tipo de mascota"
+        },
+        "breed": {
+            "type": "string",
+            "description": "Raza de la mascota"
+        },
+        "age_years": {
+            "type": "number",
+            "description": "Edad en a\u00f1os"
+        },
+        "weight_kg": {
+            "type": "number",
+            "description": "Peso en kilogramos"
+        },
+        "allergies": {
+            "type": "string",
+            "description": "Alergias o sensibilidades"
+        },
+        "observations": {
+            "type": "string",
+            "description": "Observaciones adicionales sobre comportamiento, salud, etc."
+        },
+        "is_active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Si la mascota est\u00e1 activa en el perfil"
+        }
+    },
+    "required": [
+        "owner_email",
+        "name",
+        "species"
+    ]
+}

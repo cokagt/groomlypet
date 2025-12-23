@@ -1,0 +1,55 @@
+{
+    "name": "Service",
+    "type": "object",
+    "properties": {
+        "business_id": {
+            "type": "string",
+            "description": "ID del negocio que ofrece el servicio"
+        },
+        "service_name": {
+            "type": "string",
+            "description": "Nombre del servicio"
+        },
+        "description": {
+            "type": "string",
+            "description": "Descripci\u00f3n del servicio"
+        },
+        "price": {
+            "type": "number",
+            "description": "Precio del servicio"
+        },
+        "currency": {
+            "type": "string",
+            "default": "USD",
+            "description": "Moneda"
+        },
+        "duration_minutes": {
+            "type": "number",
+            "description": "Duraci\u00f3n del servicio en minutos"
+        },
+        "available_for_species": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "dog",
+                    "cat",
+                    "bird",
+                    "rabbit",
+                    "other"
+                ]
+            },
+            "description": "Especies de mascotas para las que est\u00e1 disponible"
+        },
+        "is_active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Si el servicio est\u00e1 activo"
+        }
+    },
+    "required": [
+        "business_id",
+        "service_name",
+        "price"
+    ]
+}

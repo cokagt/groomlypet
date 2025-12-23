@@ -1,0 +1,43 @@
+{
+    "name": "EmailTemplate",
+    "type": "object",
+    "properties": {
+        "template_key": {
+            "type": "string",
+            "enum": [
+                "welcome_business",
+                "welcome_pet_owner",
+                "appointment_request_business",
+                "appointment_confirmation_user",
+                "appointment_reminder_24h",
+                "appointment_reminder_1h",
+                "review_request"
+            ],
+            "description": "Identificador \u00fanico de la plantilla"
+        },
+        "subject": {
+            "type": "string",
+            "description": "Asunto del correo"
+        },
+        "html_content": {
+            "type": "string",
+            "description": "Contenido HTML del correo con variables {{variable}}"
+        },
+        "variables": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Lista de variables disponibles (ej: {{user_name}}, {{business_name}})"
+        },
+        "description": {
+            "type": "string",
+            "description": "Descripci\u00f3n de cu\u00e1ndo se usa esta plantilla"
+        }
+    },
+    "required": [
+        "template_key",
+        "subject",
+        "html_content"
+    ]
+}

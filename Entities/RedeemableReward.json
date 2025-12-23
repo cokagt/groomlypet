@@ -1,0 +1,63 @@
+{
+    "name": "RedeemableReward",
+    "type": "object",
+    "properties": {
+        "reward_name": {
+            "type": "string",
+            "description": "Nombre del premio"
+        },
+        "description": {
+            "type": "string",
+            "description": "Descripci\u00f3n del premio"
+        },
+        "points_required": {
+            "type": "number",
+            "description": "Puntos necesarios para canjear"
+        },
+        "min_tier": {
+            "type": "string",
+            "enum": [
+                "bronze",
+                "silver",
+                "gold",
+                "platinum"
+            ],
+            "default": "bronze",
+            "description": "Nivel m\u00ednimo requerido"
+        },
+        "reward_type": {
+            "type": "string",
+            "enum": [
+                "badge",
+                "feature",
+                "priority",
+                "upgrade",
+                "vip",
+                "exclusive"
+            ],
+            "description": "Tipo de recompensa"
+        },
+        "duration_days": {
+            "type": "number",
+            "description": "Duraci\u00f3n en d\u00edas (si aplica)"
+        },
+        "is_active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Si est\u00e1 disponible para canjear"
+        },
+        "icon": {
+            "type": "string",
+            "description": "Emoji o icono"
+        },
+        "sort_order": {
+            "type": "number",
+            "description": "Orden de visualizaci\u00f3n"
+        }
+    },
+    "required": [
+        "reward_name",
+        "points_required",
+        "reward_type"
+    ]
+}

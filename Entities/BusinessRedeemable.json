@@ -1,0 +1,49 @@
+{
+    "name": "BusinessRedeemable",
+    "type": "object",
+    "properties": {
+        "business_id": {
+            "type": "string",
+            "description": "ID del negocio"
+        },
+        "service_name": {
+            "type": "string",
+            "description": "Nombre del servicio canjeable"
+        },
+        "points_required": {
+            "type": "number",
+            "description": "Puntos necesarios"
+        },
+        "min_tier": {
+            "type": "string",
+            "enum": [
+                "bronze",
+                "silver",
+                "gold",
+                "platinum"
+            ],
+            "description": "Nivel m\u00ednimo requerido"
+        },
+        "is_active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Si est\u00e1 disponible"
+        },
+        "category": {
+            "type": "string",
+            "enum": [
+                "basic",
+                "express",
+                "premium",
+                "complete"
+            ],
+            "description": "Categor\u00eda del servicio"
+        }
+    },
+    "required": [
+        "business_id",
+        "service_name",
+        "points_required",
+        "min_tier"
+    ]
+}

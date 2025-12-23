@@ -1,0 +1,58 @@
+{
+    "name": "PushNotification",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string",
+            "description": "T\u00edtulo de la notificaci\u00f3n"
+        },
+        "message": {
+            "type": "string",
+            "description": "Mensaje de la notificaci\u00f3n"
+        },
+        "target_type": {
+            "type": "string",
+            "enum": [
+                "all_users",
+                "business_owners",
+                "specific_user"
+            ],
+            "description": "A qui\u00e9n va dirigida"
+        },
+        "target_email": {
+            "type": "string",
+            "description": "Email del usuario espec\u00edfico (si aplica)"
+        },
+        "notification_type": {
+            "type": "string",
+            "enum": [
+                "appointment",
+                "promotion",
+                "system",
+                "reminder",
+                "review"
+            ],
+            "description": "Tipo de notificaci\u00f3n"
+        },
+        "link_url": {
+            "type": "string",
+            "description": "URL a donde redirige al hacer clic"
+        },
+        "is_read": {
+            "type": "boolean",
+            "default": false,
+            "description": "Si fue le\u00edda"
+        },
+        "scheduled_for": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha programada para env\u00edo"
+        }
+    },
+    "required": [
+        "title",
+        "message",
+        "target_type",
+        "notification_type"
+    ]
+}

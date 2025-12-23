@@ -1,0 +1,217 @@
+import React, { useState, useEffect } from "react";
+import { base44 } from "@/api/base44Client";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Mail, Save, Eye, ArrowLeft, Code } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useNavigate } from "react-router-dom";
+import { createPageUrl } from "@/utils";
+
+export default function AdminEmailTemplatesPage() {
+  const [user, setUser] = useState(null);
+  const [editingTemplate, setEditingTemplate] = useState(null);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const loadUser = async () => {
+      const currentUser = await base44.auth.me();
+      if (currentUser.user_type !== 'admin') {
+        navigate(createPageUrl("Home"));
+        return;
+      }
+      setUser(currentUser);
+    };
+    loadUser();
+  }, []);
+
+  const { data: templates } = useQuery({
+    queryKey: ['email-templates'],
+    queryFn: async () => {
+      return await base44.entities.EmailTemplate.list();
+    },
+    enabled: !!user,
+    initialData: [],
+  });
+
+  const updateMutation = useMutation({
+    mutationFn: async ({ id, data }) => {
+      if (id) {
+        return await base44.entities.EmailTemplate.update(id, data);
+      } else {
+        return await base44.entities.EmailTemplate.create(data);
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['email-templates'] });
+      setEditingTemplate(null);
+      alert('Plantilla guardada exitosamente');
+    },
+  });
+
+  const defaultTemplates = [
+    {
+      template_key: "welcome_business",
+      subject: "🎉 ¡Bienvenido a Groomly! - Próximos Pasos",
+      description: "Correo de bienvenida para nuevas empresas",
+      variables: ["{{business_name}}", "{{owner_name}}"],
+      html_content: `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="font-family: Arial, sans-serif; background: #f8f5ff; margin: 0; padding: 20px;">
+  <div style="max-width: 600px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden;">
+    <div style="background: linear-gradient(135deg, #7B68BE 0%, #5BA3C9 100%); color: white; padding: 40px; text-align: center;">
+      <h1 style="margin: 0; font-size: 32px;">🎉 ¡Bienvenido a Groomly!</h1>
+      <p style="margin: 10px 0 0 0; font-size: 18px;">Tu viaje comienza aquí</p>
+    </div>
+    <div style="padding: 40px;">
+      <p style="font-size: 16px; line-height: 1.6;">Hola <strong>{{business_name}}</strong>,</p>
+      <p style="font-size: 16px; line-height: 1.6;">¡Estamos emocionados de tenerte en Groomly! 🐾</p>
+      
+      <h2 style="color: #7B68BE; margin-top: 30px;">📋 Próximos Pasos para Completar tu Perfil:</h2>
+      
+      <div style="background: #f8f5ff; border-radius: 12px; padding: 20px; margin: 20px 0;">
+        <div style="margin-bottom: 15px;">
+          <strong style="color: #7B68BE;">1️⃣ Completa la Información de tu Negocio</strong>
+          <p style="margin: 5px 0; color: #666;">Agrega descripción, dirección, teléfono y redes sociales</p>
+        </div>
+        <div style="margin-bottom: 15px;">
+          <strong style="color: #7B68BE;">2️⃣ Sube Fotos de tus Instalaciones</strong>
+          <p style="margin: 5px 0; color: #666;">Mínimo 5 fotos + foto principal de fachada</p>
+        </div>
+        <div style="margin-bottom: 15px;">
+          <strong style="color: #7B68BE;">3️⃣ Agrega tus Servicios</strong>
+          <p style="margin: 5px 0; color: #666;">Define servicios, precios y duración</p>
+        </div>
+        <div style="margin-bottom: 15px;">
+          <strong style="color: #7B68BE;">4️⃣ Configura tus Amenidades</strong>
+          <p style="margin: 5px 0; color: #666;">Muestra lo que te hace especial</p>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin: 30px 0;">
+        <a href="https://groomlypet.base44.app/MyBusiness" style="display: inline-block; background: linear-gradient(135deg, #7B68BE 0%, #5BA3C9 100%); color: white; padding: 15px 40px; border-radius: 25px; text-decoration: none; font-weight: bold;">
+          Completar Mi Perfil →
+        </a>
+      </div>
+      
+      <p style="color: #666; font-size: 14px; margin-top: 30px;">¿Necesitas ayuda? Contáctanos respondiendo a este correo.</p>
+    </div>
+    <div style="background: #f8f5ff; padding: 20px; text-align: center; color: #666; font-size: 14px;">
+      <p>Groomly 🐾 - La plataforma para negocios de mascotas</p>
+    </div>
+  </div>
+</body>
+</html>`
+    },
+    {
+      template_key: "welcome_pet_owner",
+      subject: "🐾 ¡Bienvenido a Groomly! - Encuentra el Mejor Cuidado",
+      description: "Correo de bienvenida para usuarios con mascotas",
+      variables: ["{{user_name}}"],
+      html_content: `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"></head>
+<body style="font-family: Arial, sans-serif; background: #f8f5ff; margin: 0; padding: 20px;">
+  <div style="max-width: 600px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden;">
+    <div style="background: linear-gradient(135deg, #7B68BE 0%, #5BA3C9 100%); color: white; padding: 40px; text-align: center;">
+      <h1 style="margin: 0; font-size: 32px;">🐾 ¡Bienvenido a Groomly!</h1>
+      <p style="margin: 10px 0 0 0; font-size: 18px;">El mejor cuidado para tu mascota</p>
+    </div>
+    <div style="padding: 40px;">
+      <p style="font-size: 16px; line-height: 1.6;">Hola <strong>{{user_name}}</strong>,</p>
+      <p style="font-size: 16px; line-height: 1.6;">¡Nos alegra que estés aquí! Tu mascota merece lo mejor 💚</p>
+      
+      <h2 style="color: #7B68BE; margin-top: 30px;">🚀 Empieza Ahora:</h2>
+      
+      <div style="background: #f8f5ff; border-radius: 12px; padding: 20px; margin: 20px 0;">
+        <div style="margin-bottom: 15px;">
+          <strong style="color: #7B68BE;">1️⃣ Completa tu Perfil</strong>
+          <p style="margin: 5px 0; color: #666;">Agrega tu nombre, teléfono y foto</p>
+        </div>
+        <div style="margin-bottom: 15px;">
+          <strong style="color: #7B68BE;">2️⃣ Registra a tus Mascotas</strong>
+          <p style="margin: 5px 0; color: #666;">Crea perfiles con nombre, especie, raza y alergias</p>
+        </div>
+        <div style="margin-bottom: 15px;">
+          <strong style="color: #7B68BE;">3️⃣ Explora Servicios Cercanos</strong>
+          <p style="margin: 5px 0; color: #666;">Veterinarias, grooming, spa y más</p>
+        </div>
+        <div style="margin-bottom: 15px;">
+          <strong style="color: #7B68BE;">4️⃣ Agenda tu Primera Cita</strong>
+          <p style="margin: 5px 0; color: #666;">¡Empieza a cuidar mejor de tu mascota!</p>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin: 30px 0;">
+        <a href="https://groomlypet.base44.app/Search" style="display: inline-block; background: linear-gradient(135deg, #7B68BE 0%, #5BA3C9 100%); color: white; padding: 15px 40px; border-radius: 25px; text-decoration: none; font-weight: bold;">
+          Buscar Servicios →
+        </a>
+      </div>
+      
+      <div style="background: #C8F4DE; border-radius: 12px; padding: 15px; margin: 20px 0;">
+        <p style="margin: 0; color: #2d5f3f;"><strong>💎 Sistema de Recompensas:</strong></p>
+        <p style="margin: 5px 0; color: #2d5f3f; font-size: 14px;">Gana puntos por cada cita y reseña. ¡Canjéalos por descuentos!</p>
+      </div>
+    </div>
+    <div style="background: #f8f5ff; padding: 20px; text-align: center; color: #666; font-size: 14px;">
+      <p>Groomly 🐾 - Todo lo que tu mascota necesita</p>
+    </div>
+  </div>
+</body>
+</html>`
+    }
+  ];
+
+  const handleEdit = (template) => {
+    setEditingTemplate(template);
+  };
+
+  const handleSave = () => {
+    updateMutation.mutate({
+      id: editingTemplate.id,
+      data: {
+        template_key: editingTemplate.template_key,
+        subject: editingTemplate.subject,
+        html_content: editingTemplate.html_content,
+        variables: editingTemplate.variables,
+        description: editingTemplate.description
+      }
+    });
+  };
+
+  const initializeTemplate = async (defaultTemplate) => {
+    const existing = templates.find(t => t.template_key === defaultTemplate.template_key);
+    if (!existing) {
+      await base44.entities.EmailTemplate.create(defaultTemplate);
+      queryClient.invalidateQueries({ queryKey: ['email-templates'] });
+    }
+  };
+
+  if (!user) return null;
+
+  return (
+    <div className="min-h-screen py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center gap-4 mb-8">
+          <Button
+            variant="ghost"
+            onClick={() => navigate(createPageUrl("Profile"))}
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Volver
+          </Button>
+          <div>
+            <h1 className="text-4xl font-bold">
+              <span className="bg-gradient-to-r from-[#7B68BE] to-[#5BA3C9] bg-clip-text text-transparent">
+                Plantillas de Correo
+              </span>
+ 

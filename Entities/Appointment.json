@@ -1,0 +1,114 @@
+{
+    "name": "Appointment",
+    "type": "object",
+    "properties": {
+        "user_email": {
+            "type": "string",
+            "description": "Email del usuario que hace la cita"
+        },
+        "user_name": {
+            "type": "string",
+            "description": "Nombre del cliente"
+        },
+        "user_phone": {
+            "type": "string",
+            "description": "Tel\u00e9fono del cliente"
+        },
+        "business_id": {
+            "type": "string",
+            "description": "ID del negocio"
+        },
+        "pet_id": {
+            "type": "string",
+            "description": "ID de la mascota"
+        },
+        "pet_name": {
+            "type": "string",
+            "description": "Nombre de la mascota"
+        },
+        "service_id": {
+            "type": "string",
+            "description": "ID del servicio"
+        },
+        "service_name": {
+            "type": "string",
+            "description": "Nombre del servicio"
+        },
+        "appointment_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha y hora de la cita"
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "pending",
+                "confirmed",
+                "completed",
+                "cancelled"
+            ],
+            "default": "pending",
+            "description": "Estado de la cita"
+        },
+        "notes": {
+            "type": "string",
+            "description": "Notas adicionales para la cita"
+        },
+        "is_recurring": {
+            "type": "boolean",
+            "default": false,
+            "description": "Si es una cita recurrente"
+        },
+        "recurring_interval": {
+            "type": "string",
+            "enum": [
+                "1_week",
+                "15_days",
+                "3_weeks",
+                "1_month"
+            ],
+            "description": "Intervalo de recurrencia"
+        },
+        "parent_appointment_id": {
+            "type": "string",
+            "description": "ID de la cita padre (si es generada autom\u00e1ticamente)"
+        },
+        "reminder_sent_24h": {
+            "type": "boolean",
+            "default": false,
+            "description": "Si se envi\u00f3 recordatorio 24h antes"
+        },
+        "reminder_sent_1h": {
+            "type": "boolean",
+            "default": false,
+            "description": "Si se envi\u00f3 recordatorio 1h antes"
+        },
+        "reminder_sent_3d": {
+            "type": "boolean",
+            "default": false,
+            "description": "Si se envi\u00f3 recordatorio 3 d\u00edas antes (recurrentes)"
+        },
+        "reminder_sent_1d": {
+            "type": "boolean",
+            "default": false,
+            "description": "Si se envi\u00f3 recordatorio 1 d\u00eda antes (recurrentes)"
+        },
+        "review_sent": {
+            "type": "boolean",
+            "default": false,
+            "description": "Si se envi\u00f3 solicitud de rese\u00f1a"
+        },
+        "review_submitted": {
+            "type": "boolean",
+            "default": false,
+            "description": "Si el cliente ya dej\u00f3 rese\u00f1a"
+        }
+    },
+    "required": [
+        "user_email",
+        "business_id",
+        "pet_id",
+        "service_id",
+        "appointment_date"
+    ]
+}

@@ -1,0 +1,68 @@
+{
+    "name": "BlogPost",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string",
+            "description": "T\u00edtulo del art\u00edculo"
+        },
+        "slug": {
+            "type": "string",
+            "description": "URL amigable del art\u00edculo"
+        },
+        "excerpt": {
+            "type": "string",
+            "description": "Resumen corto del art\u00edculo"
+        },
+        "content": {
+            "type": "string",
+            "description": "Contenido completo del art\u00edculo en formato markdown"
+        },
+        "cover_image": {
+            "type": "string",
+            "description": "URL de la imagen de portada"
+        },
+        "category": {
+            "type": "string",
+            "enum": [
+                "cuidados",
+                "nutricion",
+                "salud",
+                "entrenamiento",
+                "grooming",
+                "noticias"
+            ],
+            "description": "Categor\u00eda del art\u00edculo"
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Etiquetas del art\u00edculo"
+        },
+        "author_name": {
+            "type": "string",
+            "description": "Nombre del autor"
+        },
+        "author_email": {
+            "type": "string",
+            "description": "Email del autor"
+        },
+        "is_published": {
+            "type": "boolean",
+            "default": false,
+            "description": "Si el art\u00edculo est\u00e1 publicado"
+        },
+        "views": {
+            "type": "number",
+            "default": 0,
+            "description": "N\u00famero de vistas"
+        }
+    },
+    "required": [
+        "title",
+        "content",
+        "author_email"
+    ]
+}

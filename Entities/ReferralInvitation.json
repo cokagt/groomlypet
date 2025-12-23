@@ -1,0 +1,52 @@
+{
+    "name": "ReferralInvitation",
+    "type": "object",
+    "properties": {
+        "referrer_email": {
+            "type": "string",
+            "description": "Email del usuario que refiere"
+        },
+        "invited_email": {
+            "type": "string",
+            "description": "Email del invitado"
+        },
+        "invitation_type": {
+            "type": "string",
+            "enum": [
+                "user",
+                "business"
+            ],
+            "description": "Tipo de invitaci\u00f3n"
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "sent",
+                "registered",
+                "completed"
+            ],
+            "default": "sent",
+            "description": "Estado de la invitaci\u00f3n"
+        },
+        "referral_code": {
+            "type": "string",
+            "description": "C\u00f3digo \u00fanico de referido"
+        },
+        "points_awarded": {
+            "type": "number",
+            "default": 0,
+            "description": "Puntos otorgados al referrer"
+        },
+        "registered_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha en que el invitado se registr\u00f3"
+        }
+    },
+    "required": [
+        "referrer_email",
+        "invited_email",
+        "invitation_type",
+        "referral_code"
+    ]
+}

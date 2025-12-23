@@ -1,0 +1,190 @@
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { CheckCircle, Users, Calendar, TrendingUp, Star, Award } from "lucide-react";
+import { Link } from "react-router-dom";
+import { createPageUrl } from "@/utils";
+
+export default function HowItWorksPage() {
+  const steps = [
+    {
+      icon: Users,
+      title: "1. Registra tu Negocio",
+      description: "Crea tu perfil completo con fotos, servicios, horarios y toda la información relevante",
+      color: "from-[#7B68BE] to-[#5BA3C9]"
+    },
+    {
+      icon: Star,
+      title: "2. Destácate",
+      description: "Elige el plan que mejor se adapte a tus necesidades y aumenta tu visibilidad",
+      color: "from-[#FFD700] to-[#FFA500]"
+    },
+    {
+      icon: Calendar,
+      title: "3. Recibe Reservas",
+      description: "Los clientes pueden encontrarte fácilmente y agendar citas online las 24/7",
+      color: "from-[#6BBF98] to-[#C8F4DE]"
+    },
+    {
+      icon: TrendingUp,
+      title: "4. Haz Crecer tu Negocio",
+      description: "Gestiona tus citas, promociones y obtén reseñas que atraigan más clientes",
+      color: "from-[#FF6B6B] to-[#FFD1D1]"
+    }
+  ];
+
+  const benefits = [
+    {
+      icon: "🚀",
+      title: "Visibilidad Inmediata",
+      description: "Aparece en búsquedas de miles de dueños de mascotas en tu área"
+    },
+    {
+      icon: "📅",
+      title: "Sistema de Reservas 24/7",
+      description: "Recibe citas automáticamente sin intervención manual"
+    },
+    {
+      icon: "⭐",
+      title: "Reseñas y Calificaciones",
+      description: "Construye tu reputación con opiniones de clientes reales"
+    },
+    {
+      icon: "📊",
+      title: "Panel de Control",
+      description: "Gestiona todo desde un solo lugar: citas, servicios y promociones"
+    },
+    {
+      icon: "🎉",
+      title: "Promociones Flexibles",
+      description: "Crea ofertas especiales para atraer nuevos clientes"
+    },
+    {
+      icon: "💬",
+      title: "Comunicación Directa",
+      description: "Contacto directo con clientes vía WhatsApp, teléfono o email"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Hero */}
+        <div className="text-center mb-16">
+          <h1 className="text-5xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-[#7B68BE] to-[#5BA3C9] bg-clip-text text-transparent">
+              ¿Cómo Funciona Groomly?
+            </span>
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Únete a la plataforma líder para servicios de mascotas y haz crecer tu negocio
+          </p>
+        </div>
+
+        {/* Steps */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          {steps.map((step, index) => (
+            <Card key={index} className="clay-card border-0 hover:scale-105 transition-all">
+              <CardContent className="p-6 text-center">
+                <div className={`w-16 h-16 rounded-[20px] bg-gradient-to-br ${step.color} clay-card flex items-center justify-center mx-auto mb-4`}>
+                  <step.icon className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="font-bold text-lg mb-2">{step.title}</h3>
+                <p className="text-sm text-gray-600">{step.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Benefits */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Beneficios de Unirte a Groomly
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {benefits.map((benefit, index) => (
+              <Card key={index} className="clay-card border-0">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="text-4xl">{benefit.icon}</div>
+                    <div>
+                      <h4 className="font-bold mb-2">{benefit.title}</h4>
+                      <p className="text-sm text-gray-600">{benefit.description}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Testimonials */}
+        <div className="clay-card rounded-[32px] bg-gradient-to-r from-[#E6D9F5] to-[#C8F4DE] p-12 mb-16">
+          <div className="max-w-4xl mx-auto text-center">
+            <Award className="w-16 h-16 text-[#7B68BE] mx-auto mb-6" />
+            <blockquote className="text-2xl font-medium mb-6">
+              "Desde que me uní a Groomly, mis reservas aumentaron un 300%. La plataforma es fácil de usar y mis clientes la aman."
+            </blockquote>
+            <p className="text-gray-700 font-medium">- María González, Veterinaria Pet Care</p>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="clay-card rounded-[32px] bg-white p-12 text-center">
+          <h2 className="text-3xl font-bold mb-4">¿Listo para Comenzar?</h2>
+          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+            Únete a cientos de negocios que ya están creciendo con Groomly. 
+            Comienza gratis y actualiza cuando estés listo.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to={createPageUrl("MyBusiness")}>
+              <Button className="clay-button rounded-[16px] bg-gradient-to-r from-[#7B68BE] to-[#5BA3C9] text-white px-8 py-6 text-lg">
+                Registrar Mi Negocio
+              </Button>
+            </Link>
+            <Link to={createPageUrl("PricingPlans")}>
+              <Button variant="outline" className="clay-button rounded-[16px] px-8 py-6 text-lg">
+                Ver Planes y Precios
+              </Button>
+            </Link>
+          </div>
+        </div>
+
+        {/* FAQ */}
+        <div className="mt-16">
+          <h2 className="text-3xl font-bold text-center mb-12">Preguntas Frecuentes</h2>
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                q: "¿Cuánto tiempo toma configurar mi perfil?",
+                a: "Puedes tener tu perfil completo en menos de 15 minutos. Solo necesitas fotos, información básica y tus servicios."
+              },
+              {
+                q: "¿Necesito experiencia técnica?",
+                a: "No, la plataforma es muy intuitiva. Si sabes usar WhatsApp o Facebook, podrás usar Groomly sin problemas."
+              },
+              {
+                q: "¿Puedo cancelar mi suscripción?",
+                a: "Sí, puedes cancelar en cualquier momento sin penalizaciones. Tu plan permanecerá activo hasta el fin del periodo pagado."
+              },
+              {
+                q: "¿Cómo recibo los pagos de los clientes?",
+                a: "Los clientes pagan directamente en tu negocio. Groomly solo facilita la reserva de citas."
+              }
+            ].map((faq, index) => (
+              <Card key={index} className="clay-card border-0">
+                <CardContent className="p-6">
+                  <h4 className="font-bold mb-2 flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-[#7B68BE] flex-shrink-0 mt-0.5" />
+                    {faq.q}
+                  </h4>
+                  <p className="text-sm text-gray-600 ml-7">{faq.a}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

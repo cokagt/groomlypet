@@ -1,0 +1,60 @@
+{
+    "name": "RewardRedemption",
+    "type": "object",
+    "properties": {
+        "user_email": {
+            "type": "string",
+            "description": "Email del usuario"
+        },
+        "reward_type": {
+            "type": "string",
+            "enum": [
+                "platform_reward",
+                "business_service"
+            ],
+            "description": "Tipo de canje"
+        },
+        "reward_id": {
+            "type": "string",
+            "description": "ID del premio canjeado"
+        },
+        "reward_name": {
+            "type": "string",
+            "description": "Nombre del premio"
+        },
+        "business_id": {
+            "type": "string",
+            "description": "ID del negocio (si aplica)"
+        },
+        "points_spent": {
+            "type": "number",
+            "description": "Puntos gastados"
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "active",
+                "used",
+                "expired"
+            ],
+            "default": "active",
+            "description": "Estado del canje"
+        },
+        "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha de expiraci\u00f3n"
+        },
+        "used_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Cu\u00e1ndo se us\u00f3"
+        }
+    },
+    "required": [
+        "user_email",
+        "reward_type",
+        "reward_name",
+        "points_spent"
+    ]
+}

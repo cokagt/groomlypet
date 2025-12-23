@@ -1,0 +1,200 @@
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { base44 } from "@/api/base44Client";
+import { 
+  UserPlus, PawPrint, Search, Calendar, Star, Heart,
+  CheckCircle, MapPin, Bell, Shield
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import { createPageUrl } from "@/utils";
+
+export default function HowItWorksUsersPage() {
+  const steps = [
+    {
+      number: "1",
+      icon: UserPlus,
+      title: "Crea tu Cuenta",
+      description: "Regístrate gratis con tu correo electrónico o conecta tus redes sociales para un acceso rápido",
+      color: "from-[#7B68BE] to-[#5BA3C9]"
+    },
+    {
+      number: "2",
+      icon: PawPrint,
+      title: "Registra tus Mascotas",
+      description: "Agrega hasta 5 mascotas con toda su información: nombre, raza, edad, alergias y más",
+      color: "from-[#6BBF98] to-[#C8F4DE]"
+    },
+    {
+      number: "3",
+      icon: Search,
+      title: "Encuentra Servicios",
+      description: "Busca veterinarias, grooming, spa, guarderías y más cerca de tu ubicación",
+      color: "from-[#FFD700] to-[#FFA500]"
+    },
+    {
+      number: "4",
+      icon: Calendar,
+      title: "Agenda tu Cita",
+      description: "Reserva citas en línea las 24 horas del día, los 7 días de la semana",
+      color: "from-[#FF6B6B] to-[#FFD1D1]"
+    }
+  ];
+
+  const benefits = [
+    {
+      icon: MapPin,
+      title: "Negocios Cerca de Ti",
+      description: "Encuentra servicios verificados en tu zona con solo un clic"
+    },
+    {
+      icon: Star,
+      title: "Reseñas Reales",
+      description: "Lee opiniones de otros dueños de mascotas antes de elegir"
+    },
+    {
+      icon: Bell,
+      title: "Recordatorios",
+      description: "Recibe notificaciones de tus citas y promociones exclusivas"
+    },
+    {
+      icon: Heart,
+      title: "Favoritos",
+      description: "Guarda tus negocios preferidos para acceder fácilmente"
+    },
+    {
+      icon: Shield,
+      title: "100% Gratuito",
+      description: "Usar Groomly es completamente gratis para dueños de mascotas"
+    },
+    {
+      icon: Calendar,
+      title: "Historial Completo",
+      description: "Accede al historial de citas y servicios de tus mascotas"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Hero */}
+        <div className="text-center mb-16">
+          <div className="inline-block mb-4">
+            <span className="px-6 py-2 rounded-full clay-card bg-gradient-to-r from-[#E6D9F5] to-[#C8F4DE] text-[#7B68BE] text-sm font-medium">
+              🐾 Para Dueños de Mascotas
+            </span>
+          </div>
+          <h1 className="text-5xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-[#7B68BE] to-[#5BA3C9] bg-clip-text text-transparent">
+              ¿Cómo Funciona Groomly?
+            </span>
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Encuentra los mejores servicios para tu mascota en minutos. 
+            ¡Es fácil, rápido y gratis!
+          </p>
+        </div>
+
+        {/* Steps */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          {steps.map((step, index) => (
+            <Card key={index} className="clay-card border-0 hover:scale-105 transition-all relative">
+              <CardContent className="p-6 text-center pt-10">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="w-8 h-8 rounded-full bg-white shadow-lg flex items-center justify-center border-2 border-[#7B68BE]">
+                    <span className="font-bold text-[#7B68BE]">{step.number}</span>
+                  </div>
+                </div>
+                <div className={`w-16 h-16 rounded-[20px] bg-gradient-to-br ${step.color} clay-card flex items-center justify-center mx-auto mb-4`}>
+                  <step.icon className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="font-bold text-lg mb-2">{step.title}</h3>
+                <p className="text-sm text-gray-600">{step.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Benefits */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Beneficios de Usar Groomly
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {benefits.map((benefit, index) => (
+              <Card key={index} className="clay-card border-0">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-[16px] bg-gradient-to-br from-[#E6D9F5] to-[#C8F4DE] flex items-center justify-center flex-shrink-0">
+                      <benefit.icon className="w-6 h-6 text-[#7B68BE]" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-2">{benefit.title}</h4>
+                      <p className="text-sm text-gray-600">{benefit.description}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* FAQ */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-center mb-12">Preguntas Frecuentes</h2>
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                q: "¿Groomly es gratis para usuarios?",
+                a: "¡Sí! Usar Groomly es 100% gratuito para dueños de mascotas. Puedes buscar, agendar citas y más sin ningún costo."
+              },
+              {
+                q: "¿Cuántas mascotas puedo registrar?",
+                a: "Puedes registrar hasta 5 mascotas en tu cuenta, incluyendo perros, gatos, aves, conejos y otras especies."
+              },
+              {
+                q: "¿Cómo sé si un negocio es confiable?",
+                a: "Todos los negocios en Groomly son verificados. Además, puedes leer reseñas de otros usuarios antes de agendar."
+              },
+              {
+                q: "¿Puedo cancelar una cita?",
+                a: "Sí, puedes cancelar citas pendientes desde tu panel de control. Te recomendamos hacerlo con anticipación."
+              }
+            ].map((faq, index) => (
+              <Card key={index} className="clay-card border-0">
+                <CardContent className="p-6">
+                  <h4 className="font-bold mb-2 flex items-start gap-2">
+                    <CheckCircle className="w-5 h-5 text-[#7B68BE] flex-shrink-0 mt-0.5" />
+                    {faq.q}
+                  </h4>
+                  <p className="text-sm text-gray-600 ml-7">{faq.a}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="clay-card rounded-[32px] bg-gradient-to-r from-[#7B68BE] to-[#5BA3C9] p-12 text-center text-white">
+          <h2 className="text-3xl font-bold mb-4">¿Listo para Comenzar?</h2>
+          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+            Únete a miles de dueños de mascotas que ya confían en Groomly
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              onClick={() => base44.auth.redirectToLogin()}
+              className="clay-button rounded-[16px] bg-white text-[#7B68BE] px-8 py-6 text-lg hover:shadow-2xl"
+            >
+              Crear Cuenta Gratis
+            </Button>
+            <Link to={createPageUrl("Search")}>
+              <Button variant="outline" className="clay-button rounded-[16px] border-2 border-white bg-transparent text-white px-8 py-6 text-lg hover:bg-white/20">
+                Explorar Servicios
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

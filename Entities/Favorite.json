@@ -1,0 +1,38 @@
+{
+    "name": "Favorite",
+    "type": "object",
+    "properties": {
+        "user_email": {
+            "type": "string",
+            "description": "Email del usuario"
+        },
+        "business_id": {
+            "type": "string",
+            "description": "ID del negocio favorito"
+        },
+        "favorite_type": {
+            "type": "string",
+            "enum": [
+                "business",
+                "service_category"
+            ],
+            "description": "Tipo de favorito"
+        },
+        "service_category": {
+            "type": "string",
+            "enum": [
+                "veterinary",
+                "grooming",
+                "spa",
+                "training",
+                "daycare",
+                "pet_shop"
+            ],
+            "description": "Categor\u00eda de servicio favorita"
+        }
+    },
+    "required": [
+        "user_email",
+        "favorite_type"
+    ]
+}

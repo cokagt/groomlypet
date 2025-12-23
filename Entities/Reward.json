@@ -1,0 +1,58 @@
+{
+    "name": "Reward",
+    "type": "object",
+    "properties": {
+        "reward_name": {
+            "type": "string",
+            "description": "Nombre del premio"
+        },
+        "description": {
+            "type": "string",
+            "description": "Descripci\u00f3n del premio"
+        },
+        "points_required": {
+            "type": "number",
+            "description": "Puntos necesarios para canjear"
+        },
+        "reward_type": {
+            "type": "string",
+            "enum": [
+                "discount_percentage",
+                "discount_fixed",
+                "free_service",
+                "priority_booking",
+                "exclusive_access"
+            ],
+            "description": "Tipo de recompensa"
+        },
+        "discount_value": {
+            "type": "number",
+            "description": "Valor del descuento (porcentaje o monto fijo)"
+        },
+        "applicable_categories": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Categor\u00edas donde aplica (veterinary, grooming, etc.)"
+        },
+        "is_active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Si el premio est\u00e1 activo"
+        },
+        "icon": {
+            "type": "string",
+            "description": "Emoji o icono del premio"
+        },
+        "expiration_days": {
+            "type": "number",
+            "description": "D\u00edas de validez despu\u00e9s de canjear (0 = sin expiraci\u00f3n)"
+        }
+    },
+    "required": [
+        "reward_name",
+        "points_required",
+        "reward_type"
+    ]
+}
